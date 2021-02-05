@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// Export an object containing methods we'll use for accessing the random user API
+// Create object to export with the API call in it for Random User
 const API = {
-  getUsers: function (language) {
+  getUsers: function () {
     return new Promise((resolve, reject) => {
       axios
         .get("https://randomuser.me/api/?results=50&inc=name,picture,email,phone,dob")
