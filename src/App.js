@@ -1,12 +1,11 @@
 import React from "react";
 import Directory from "./pages/Directory";
-import Wrapper from "./components/Wrapper";
 
 function App() {
   return (
-      <Wrapper>
+    <div>
         <Directory />
-    </Wrapper>
+    </div>
   );
 }
 
