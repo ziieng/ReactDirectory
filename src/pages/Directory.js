@@ -54,12 +54,12 @@ function Gallery() {
         break;
 
       case "Birthday":
-        if (sort === "Bday Asc") {
+        if (sort === "Birthday Asc") {
           setUsers(Sorter.Month(toSort, "desc"))
-          setSort("Bday Desc")
+          setSort("Birthday Desc")
         } else {
           setUsers(Sorter.Month(toSort, "asc"))
-          setSort("Bday Asc")
+          setSort("Birthday Asc")
         }
         break;
 
