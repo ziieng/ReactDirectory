@@ -27,7 +27,7 @@ const Sorter = {
     return newArr
   },
 
-  Month: function (arr) {
+  Month: function (arr, dir) {
     //heavily modified version of https://discuss.codecademy.com/t/array-sorting-based-on-another-array/400282/2
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     arr.forEach(el => el.bday = el.bday.split(" "))
@@ -35,6 +35,9 @@ const Sorter = {
       return months.indexOf(a.bday[0]) - months.indexOf(b.bday[0]) || a.bday[1] - b.bday[1]
     })
     arr.forEach(el => el.bday = el.bday.join(" "))
+    if (dir === "desc") {
+      return arr.reverse()
+    }
     return arr
   }
 }

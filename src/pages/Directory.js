@@ -54,7 +54,13 @@ function Gallery() {
         break;
 
       case "Birthday":
-
+        if (sort === "Bday Asc") {
+          setUsers(Sorter.Month(toSort, "desc"))
+          setSort("Bday Desc")
+        } else {
+          setUsers(Sorter.Month(toSort, "asc"))
+          setSort("Bday Asc")
+        }
         break;
 
       default:
