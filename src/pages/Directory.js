@@ -4,6 +4,8 @@ import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "../components/Header"
+import ColTitle from "../components/ColTitle"
+import Sorts from "../utils/Sort"
 
 function Gallery() {
   const [sort, setSort] = useState("");
@@ -14,9 +16,11 @@ function Gallery() {
     loadUsers();
   }, []);
 
-  function handleBtnClick(event) {
+  function updateSort(tag) {
     // Get the title of the clicked button
-    const btnName = event.target.getAttribute("data-value");
+    const btnName = tag;
+    console.log("click happened")
+    console.log(btnName)
     if (btnName === "next") {
     }
   }
@@ -37,17 +41,17 @@ function Gallery() {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th className="align-middle text-center">Image</th>
-                <th className="align-middle text-center">Name</th>
-                <th className="align-middle text-center">Email</th>
-                <th className="align-middle text-center">Phone</th>
-                <th className="align-middle text-center">Birthday</th>
+                <th scope="col" className="align-middle text-center">Image</th>
+                <ColTitle label="Name" updateSort={updateSort} />
+                <ColTitle label="Email" updateSort={updateSort} />
+                <ColTitle label="Phone" updateSort={updateSort} />
+                <ColTitle label="Birthday" updateSort={updateSort} />
               </tr>
             </thead>
             <tbody>
               {users.map((user, i) => (
                 <tr key={i}>
-                  <td><img src={user.image} alt={"Photo of " + user.name}></img></td>
+                  <td className="align-middle text-center"><img src={user.image} alt={"Photo of " + user.name}></img></td>
                   <td className="align-middle text-center">{user.name}</td>
                   <td className="align-middle text-center">{user.email}</td>
                   <td className="align-middle text-center">{user.phone}</td>
