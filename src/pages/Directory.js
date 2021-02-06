@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import API from "../utils/API";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import API from "../utils/API";
+import Sorter from "../utils/Sort"
 import Header from "../components/Header"
 import ColTitle from "../components/ColTitle"
-import Sorts from "../utils/Sort"
+import TableBody from "../components/TableBody"
 
 function Gallery() {
   const [sort, setSort] = useState("");
@@ -20,15 +21,41 @@ function Gallery() {
     // Get the title of the clicked button
     const btnName = tag;
     console.log("click happened")
-    console.log(btnName)
-    if (btnName === "next") {
+    let toSort = users
+    switch (btnName) {
+      case "Name":
+        if (sort === "Name Asc") {
+          console.log("Name Asc")
+          setUsers(Sorter.Desc(toSort, "name"))
+          setSort("Name Desc")
+        } else {
+          console.log("Name new")
+          let sorted = Sorter.Asc(toSort, "name")
+          setUsers(sorted)
+          setSort("Name Asc")
+        }
+        break;
+
+      case "Email":
+
+        break;
+
+      case "Phone":
+
+        break;
+
+      case "Birthday":
+
+        break;
+
+      default:
+        break;
     }
   }
 
   function loadUsers() {
     API.getUsers().then(users => {
       setUsers(users);
-      setSort("Name Asc");
     })
       .catch(err => console.log(err));
   }
@@ -36,32 +63,24 @@ function Gallery() {
   return (
     <div>
       <Header />
+      <div className="container-fluid">
       <Row>
         <Col>
           <Table striped bordered hover>
             <thead>
               <tr>
                 <th scope="col" className="align-middle text-center">Image</th>
-                <ColTitle label="Name" updateSort={updateSort} />
-                <ColTitle label="Email" updateSort={updateSort} />
-                <ColTitle label="Phone" updateSort={updateSort} />
-                <ColTitle label="Birthday" updateSort={updateSort} />
+                  <ColTitle label="Name" updateSort={updateSort} sortState={sort} />
+                  <ColTitle label="Email" updateSort={updateSort} sortState={sort} />
+                  <ColTitle label="Phone" updateSort={updateSort} sortState={sort} />
+                  <ColTitle label="Birthday" updateSort={updateSort} sortState={sort} />
               </tr>
             </thead>
-            <tbody>
-              {users.map((user, i) => (
-                <tr key={i}>
-                  <td className="align-middle text-center"><img src={user.image} alt={"Photo of " + user.name}></img></td>
-                  <td className="align-middle text-center">{user.name}</td>
-                  <td className="align-middle text-center">{user.email}</td>
-                  <td className="align-middle text-center">{user.phone}</td>
-                  <td className="align-middle text-center">{user.bday}</td>
-                </tr>
-              ))}
-            </tbody>
+              <TableBody users={users} />
           </Table>
         </Col>
       </Row>
+      </div>
     </div>
   );
 }
