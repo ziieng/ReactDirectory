@@ -25,23 +25,32 @@ function Gallery() {
     switch (btnName) {
       case "Name":
         if (sort === "Name Asc") {
-          console.log("Name Asc")
           setUsers(Sorter.Desc(toSort, "name"))
           setSort("Name Desc")
         } else {
-          console.log("Name new")
-          let sorted = Sorter.Asc(toSort, "name")
-          setUsers(sorted)
+          setUsers(Sorter.Asc(toSort, "name"))
           setSort("Name Asc")
         }
         break;
 
       case "Email":
-
+        if (sort === "Email Asc") {
+          setUsers(Sorter.Desc(toSort, "email"))
+          setSort("Email Desc")
+        } else {
+          setUsers(Sorter.Asc(toSort, "email"))
+          setSort("Email Asc")
+        }
         break;
 
       case "Phone":
-
+        if (sort === "Phone Asc") {
+          setUsers(Sorter.Desc(toSort, "phone"))
+          setSort("Phone Desc")
+        } else {
+          setUsers(Sorter.Asc(toSort, "phone"))
+          setSort("Phone Asc")
+        }
         break;
 
       case "Birthday":
