@@ -5,16 +5,16 @@ const API = {
   getUsers: function () {
     return new Promise((resolve, reject) => {
       axios
-        .get("https://randomuser.me/api/?results=50&inc=name,picture,email,phone,dob")
+        .get("https://randomuser.me/api/?results=50&inc=name,picture,email,phone,dob&nat=us")
         .then(res => {
-          const users = res.results;
+          const users = res.data.results;
           const details = users.map(user => {
             return {
-              name: user.name,
-              image: user.picture,
+              name: user.name.last + ", " + user.name.first,
+              image: user.picture.medium,
               email: user.email,
               phone: phoneFormat(user.phone),
-              bday: bdayFormat(user.dob)
+              bday: bdayFormat(user.dob.date)
             };
           });
           resolve(details);
@@ -27,7 +27,7 @@ const API = {
 //Change DOB to birthday (full DOB is data that shouldn't be everywhere)
 function bdayFormat(date) {
   let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  let d = new Date(date);
+  let d = new Date(Date.parse(date));
   let string = months[d.getMonth()] + " " + d.getDate()
   return string
 }
