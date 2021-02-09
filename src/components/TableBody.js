@@ -1,7 +1,7 @@
 import React from "react";
 
 const TableBody = (props) => {
-  if (props.users) {
+  if (props.users !== "none") {
   return <tbody>
     {props.users.map((user, i) => (
       <tr key={i}>
@@ -15,9 +15,8 @@ const TableBody = (props) => {
     </tbody>
   }
   else {
-    return <tbody>
-      <th scope="row" className="align-middle text-center">"No employees found."</th>
-    </tbody>
+    return <tbody><td colspan="5" className="text-center">No employees found with that search.
+    </td></tbody>
   }
 }
 
