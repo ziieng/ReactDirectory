@@ -1,6 +1,7 @@
 import React from "react";
 
 const TableBody = (props) => {
+  if (props.users) {
   return <tbody>
     {props.users.map((user, i) => (
       <tr key={i}>
@@ -11,7 +12,13 @@ const TableBody = (props) => {
         <td className="align-middle text-center">{user.bday}</td>
       </tr>
     ))}
-  </tbody>
+    </tbody>
+  }
+  else {
+    return <tbody>
+      <th scope="row" className="align-middle text-center">"No employees found."</th>
+    </tbody>
+  }
 }
 
 export default TableBody
