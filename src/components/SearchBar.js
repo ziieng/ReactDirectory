@@ -16,18 +16,19 @@ function SearchBar(props) {
     }
   }
 
-  return <div className="content-center">
-    <form className="form-inline my-2">
+  return <form className="mb-3 px-2 ml-md-3">
+    <div className="form-group row">
+      <label for="search" className="col-md-2">Search to filter list:</label> 
       <input
-        className="form-control"
+        className="form-control col-md-9"
         type="search"
         placeholder="Search"
         aria-label="Search"
         name="search"
         onChange={handleSearch}
       />
-    </form>
-  </div>
+    </div>
+  </form>
 }
 
 export default SearchBar
