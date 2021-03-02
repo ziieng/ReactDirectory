@@ -29,11 +29,10 @@ It might be nice to have a modal that pops up with more information about a spec
 
 ### Built With
 
-* Node.js
-    * [express](https://www.npmjs.com/package/express)
-    * [morgan](https://www.npmjs.com/package/morgan)
-* MongoDB
-    * [mongoose](https://www.npmjs.com/package/mongoose)
+* React
+* [React-Bootstrap](https://www.npmjs.com/package/react-bootstrap)
+* [Axios](https://www.npmjs.com/package/axios)
+* jQuery
 
 ## Installation
 To install app dependencies, run this command in your terminal:
